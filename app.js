@@ -21,7 +21,8 @@ for(let i = 0; i < action_btn.length; i++){
 			args:{
 				pokemon: 	pokemon, 	// give pokemon name
 				enemy: 		enemy,		// give enemy name
-				attack: 	attack 		// give attack name
+				attack: 	attack,		// give attack name
+				create: 	false 		// prevents new pokemon
 
 			}
 		};
@@ -39,9 +40,11 @@ function ajax(url, data) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			attack_log.innerHTML = this.responseText;
+console.log(data);
+			attack_log.insertAdjacentHTML('beforeend', this.responseText);
 		}
 	};
 	xhttp.open('GET', url+'?data='+data, true);
 	xhttp.send();
 }
+

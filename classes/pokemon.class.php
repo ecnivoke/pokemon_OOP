@@ -14,6 +14,7 @@ class Pokemon {
 	public $hp;
 	public $health;
 	public $type;
+	public $color;
 	public $attacks;
 
 	// Methodes
@@ -163,7 +164,7 @@ class Pokemon {
 		}
 
 		// display attack log
-		echo $message;
+		echo $message."<br />";
 	}
 
 }

@@ -2,7 +2,7 @@
 
 require_once('battle.php');
 
- ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@ require_once('battle.php');
 		<?php } // end foreach $pokemons ?>
 		<div id='log'></div>
 	</div>
-	<?php d($pokemons['charmander']); ?>
+	<?php // d($pokemons['charmander']); ?>
 	<script type="text/javascript" src='app.js'></script>
 </body>
 </html>
