@@ -1,6 +1,6 @@
 <?php 
 
-require 'battle.php';
+require_once('battle.php');
 
  ?>
 
@@ -12,21 +12,20 @@ require 'battle.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
 	<div class='container'>
-		
 		<?php foreach($pokemons as $pokemon){ ?>
 			<div class='row pokediv'>
 				<div class='small-12 columns'>
-					<h3><?php echo $pokemon->name; ?></h3>
+					<h3 class='name'><?php echo $pokemon->name; ?></h3>
 					<?php foreach($pokemon->attacks as $attack) { ?>
-						<div id='attack' data-attack="<?php echo $attack['name']; ?>" style="border-color:<?php echo $pokemon->color; ?>;" class='attack'>
+						<div class='attack' data-pokemon="<?php echo $pokemon->name; ?>" data-attack="<?php echo $attack['name']; ?>" style="border-color:<?php echo $pokemon->color; ?>;" class='attack'>
 							<?php echo $attack['name']; ?>
 						</div>
 					<?php } // end foreach $pokemon->attacks ?>
 				</div>
 			</div>
 		<?php } // end foreach $pokemons ?>
+		<div id='log'></div>
 	</div>
 	<?php d($pokemons['charmander']); ?>
 	<script type="text/javascript" src='app.js'></script>

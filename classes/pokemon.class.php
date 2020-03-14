@@ -1,5 +1,11 @@
 <?php 
 
+// print rules
+// names: 	<span style=\'color:blue;\'></span>
+// damage: 	<span style=\'color:red;\'></span>
+// health: 	<span style=\'color:#17bd54;\'></span>
+// attacks:<span style=\'color:#bf62b1;\'></span>
+
 class Pokemon {
 
 	// Properties

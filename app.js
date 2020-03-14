@@ -1,26 +1,47 @@
 // define variable
-let attack_btn 	= document.getElementById('attack');
-let attack  	= attack_btn.getAttribute('data-attack');
-let data 		= {attack:''};
+let action_btn 	= document.getElementsByClassName('attack');	// action button
+let attack_log 	= document.getElementById('log'); 				// attack log div
 
-// assemble data
-data.attack 	= attack;
-data 			= json_encode(data); // werkt dit???????????????????????
+// loop over action buttons
+for(let i = 0; i < action_btn.length; i++){
+	// set events
+	action_btn[i].onclick = function makeCall(e) {
+
+		let btn 		= e.target;
+		let attack  	= btn.getAttribute('data-attack'); 	// get attack
+		let pokemon 	= btn.getAttribute('data-pokemon'); // get pokemon
+
+		let enemy 		= document.getElementsByClassName('name');
+		_enemy 			= enemy[0].textContent;
+		enemy 			= _enemy == pokemon ? enemy[1].textContent : _enemy;
+
+		// create data object
+		let data 		= {
+			func:'attack', 				// call attack function
+			args:{
+				pokemon: 	pokemon, 	// give pokemon name
+				enemy: 		enemy,		// give enemy name
+				attack: 	attack 		// give attack name
+
+			}
+		};
+
+		// make data json object
+		data = JSON.stringify(data);
+
+		// make ajax call
+		ajax('battle.php', data);
+	}
+}
 
 // ajax call function
 function ajax(url, data) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log(this.responseText);
+			attack_log.innerHTML = this.responseText;
 		}
 	};
 	xhttp.open('GET', url+'?data='+data, true);
 	xhttp.send();
 }
-
-console.log(data);
-
-// ajax('battle.php', data);
-// index.php?data=data
-
