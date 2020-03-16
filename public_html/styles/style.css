@@ -1,0 +1,50 @@
+
+.pokemon-holder {
+
+	margin-top: 	10px;
+
+	padding: 		20px;
+
+	border: 		1px solid black;
+
+	color: 			black;
+}
+
+.pokemon-holder:hover {
+
+	border-radius: 20%;
+
+}
+
+/*
+	.pokediv {
+
+		margin-bottom: 		10px;
+
+		border: 			2px solid black;
+	}
+
+	.attack {
+		display: 			inline-block;
+
+		margin: 			5px;
+
+		padding: 			8px;
+
+		text-align:	 		center;
+
+		border: 			2px solid;
+		border-radius:  	0%;
+
+		width: 				100px;
+		height: 			40px;
+
+		transition: 		background-color .6s ease-in-out;
+
+	}
+
+	.attack:hover {
+		cursor:  			pointer;
+		border-radius:  	40%;
+	}
+*/

@@ -1,7 +1,5 @@
 <?php 
 
-require_once('create.php');
-
 // begin the battle
 // echo '<br />';
 // $pokemons['charmander']->attack('punch', $pokemons['rob']);
@@ -16,8 +14,6 @@ require_once('create.php');
 // $pokemons['rob']->attack('nier trap', $pokemons['charmander']);
 
 // d($pokemons);
-
-
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
