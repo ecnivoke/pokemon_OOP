@@ -1,50 +1,50 @@
-// define variable
-let action_btn 	= document.getElementsByClassName('attack');	// action button
-let attack_log 	= document.getElementById('log'); 				// attack log div
 
-// loop over action buttons
-for(let i = 0; i < action_btn.length; i++){
-	// set events
-	action_btn[i].onclick = function makeCall(e) {
+// Define variables
+let player_container 	= document.getElementsByClassName('player');
+let player_button 		= document.getElementsByClassName('pokemon-holder');
+let chosing_cnt 		= document.getElementById('chosing');
+let player_text 		= ['<span style=\'color:blue\'>P1</span>', '<span style=\'color:red\'>P2</span>'];
+let selected 			= [0, 0]; // 2 players
+let player 				= 0;
 
-		let btn 		= e.target;
-		let attack  	= btn.getAttribute('data-attack'); 	// get attack
-		let pokemon 	= btn.getAttribute('data-pokemon'); // get pokemon
+// Set chosing player
+chosing_cnt.innerHTML 	= player_text[0]; 
 
-		let enemy 		= document.getElementsByClassName('name');
-		_enemy 			= enemy[0].textContent;
-		enemy 			= _enemy == pokemon ? enemy[1].textContent : _enemy;
+// Loop over buttons
+for(let i = 0; i < player_button.length; i++){
 
-		// create data object
-		let data 		= {
-			func:'attack', 				// call attack function
-			args:{
-				pokemon: 	pokemon, 	// give pokemon name
-				enemy: 		enemy,		// give enemy name
-				attack: 	attack,		// give attack name
-				create: 	false 		// prevents new pokemon
+	// Set onclick event
+	player_button[i].onclick = () => {
 
+		// Swap players
+		if(selected[player] == 1){
+			// Set player
+			player_container[i].innerHTML 	= player_text[player];
+			player 							= player == 1 ? player -= 1 : player += 1;
+
+			// Loop over other players
+			for(let j = 0; j < player_container.length; j++){
+
+				// Check if not empty
+				if(player_container[j].textContent != ''){
+					// Swap
+					player 							= player == 1 ? player -= 1 : player += 1;
+					player_container[j].innerHTML 	= player_text[player];
+					
+				}
 			}
-		};
-
-		// make data json object
-		data = JSON.stringify(data);
-
-		// make ajax call
-		ajax('battle.php', data);
-	}
-}
-
-// ajax call function
-function ajax(url, data) {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-console.log(data);
-			attack_log.insertAdjacentHTML('beforeend', this.responseText);
+			
+			chosing_cnt.innerHTML 			= player_text[player];
 		}
-	};
-	xhttp.open('GET', url+'?data='+data, true);
-	xhttp.send();
+		else {
+			// Set player text
+			player_container[i].innerHTML 	= player_text[player];
+
+			// Set current player
+			selected[player] 				= 1;
+			player 							= player == 1 ? player -= 1 : player += 1;
+			chosing_cnt.innerHTML 			= player_text[player];
+		}		
+	}
 }
 

@@ -10,5 +10,3 @@ $page = !isset($_GET['p']) ? 'choose' : $_GET['p'];
 require 'modules/'.$page.'.php';
 // Include template
 include 'public_html/'.$page.'.tpl.php';
-
-

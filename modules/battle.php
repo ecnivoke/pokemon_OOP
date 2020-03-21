@@ -2,7 +2,7 @@
 
 require 'classes/pokemon.class.php';
 
-function getPokemon($database){
+function getPokemon($database, $id){
 
 	// Get pokemon id
 	$id = $_GET['poke'];
@@ -18,7 +18,7 @@ function getPokemon($database){
 			types.type,
 			types.weakness,
 			types.resistance,
-			attacks.name,
+			attacks.name 		AS attack_name,
 			attacks.damage
 		FROM 
 			pokemon,
@@ -29,6 +29,7 @@ function getPokemon($database){
 			AND pokemon.type_id = types.id
 			AND pokemon.id 		= link_attacks.pokemon_id
 			AND attacks.id 		= link_attacks.attack_id
+			AND pokemon.id 		= ".$id."
 	";
 
 	// Get rows
