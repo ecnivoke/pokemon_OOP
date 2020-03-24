@@ -4,18 +4,18 @@
 // names: 	<span style=\'color:blue;\'></span>
 // damage: 	<span style=\'color:red;\'></span>
 // health: 	<span style=\'color:#17bd54;\'></span>
-// attacks:<span style=\'color:#bf62b1;\'></span>
+// attacks:	<span style=\'color:#bf62b1;\'></span>
 
 class Pokemon {
 
 	// Properties
-	public $name;
-	public $damage;
-	public $hp;
-	public $health;
-	public $type;
-	public $color;
-	public $attacks;
+	private $name;
+	private $damage;
+	private $hp;
+	private $health;
+	private $type;
+	private $color;
+	private $attacks;
 
 	// Methodes
 	public function __construct($pokemon){
@@ -47,6 +47,28 @@ class Pokemon {
 		return json_encode($this);
 	}
 
+	// Getters
+	public function getHealth(){
+		return $this->health;
+	}
+
+	public function getName(){
+		return $this->name;
+	}
+
+	public function getColor(){
+		return $this->color;
+	}
+
+	public function getHp(){
+		return $this->hp;
+	}
+
+	public function getAttacks(){
+		return $this->attacks;
+	}
+
+	// Setters
 	public function setColor(){
 		// loop over types
 		switch($this->type){
@@ -70,13 +92,17 @@ class Pokemon {
 		return $this->color;
 	}
 
+	public function setHealth($damage){
+		return $this->health = $this->health - $damage;
+	}
+
 	public function attack($attack, $enemy){
 		// attack log
 		$message 	= '';
 		$effective 	= '';
 
 		// attack log, attacks
-		$message .= '<span style=\'color:blue;\'>'.$this->name.'</span> attacked <span style=\'color:blue;\'>'.$enemy->name;
+		$message .= '<span style=\'color:blue;\'>'.$this->name.'</span> attacked <span style=\'color:blue;\'>'.$enemy->getName();
 		$message .= '</span> with <span style=\'color:#bf62b1;\'>'.$attack;
 
 		// if pokemon type = attack type
@@ -142,10 +168,10 @@ class Pokemon {
 		$message .= '</span> for <span style=\'color:red;\'>'.$damage.'</span> damage.<br />';
 
 		// calculate new enemy health
-		$enemy->health = $enemy->health - $damage;
+		$enemy->setHealth($damage);
 
 		// attack log, new health
-		$message .= $effective.'<br /><span style=\'color:blue;\'>'.$enemy->name.'</span> new health: ';
+		$message .= $effective.'<br /><span style=\'color:blue;\'>'.$enemy->getName().'</span> new health: ';
 
 		// battle is won
 		if($enemy->health <= 0){
@@ -153,18 +179,18 @@ class Pokemon {
 			$enemy->health = 0;
 
 			// attack log, new health
-			$message .= '<span style=\'color:#17bd54;\'>'.$enemy->health.'</span><br />';
+			$message .= '<span style=\'color:#17bd54;\'>'.$enemy->getHealth().'</span><br />';
 			$message .= '<h3><span style=\'color:blue;\'>'.$this->name.'</span> won.</h3>';
 
 			// echo '<h3><span style=\'color:blue;\'>'.$this->name.'</span> won.</h3>';
 		}
 		else {
 			// attack log, new health
-			$message .= '<span style=\'color:#17bd54;\'>'.$enemy->health.'</span><br />';
+			$message .= '<span style=\'color:#17bd54;\'>'.$enemy->getHealth().'</span><br />';
 		}
 
 		// display attack log
-		echo $message."<br />";
+		return $message;
 	}
 
 }

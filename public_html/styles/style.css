@@ -1,4 +1,10 @@
 
+body {
+
+	margin-top: 	50px;
+
+}
+
 .pokemon-holder {
 
 	position:  		relative;
@@ -22,4 +28,40 @@
 	position:  		absolute;
 	top: 			10%;
 	right:  		10%;
+}
+
+.battle-div {
+	margin:  		10px;
+	border:  		2px solid black;
+	padding: 		20px;
+}
+
+.battle-div .title {
+
+	text-align:  	center;
+
+	font-weight:  	700;
+}
+
+.battle-div .health {
+
+	text-align:  	center;
+}
+
+.attacks {
+	margin:  		10px;
+	border:  		1px solid black;
+	padding:  		10px;
+}
+
+.attacks:hover {
+
+	cursor: 		pointer;
+}
+
+.attacks .name {
+
+	color: 			black;
+	font-weight:  	700;
+	text-align:  	center;
 }

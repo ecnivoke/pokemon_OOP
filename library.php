@@ -11,13 +11,6 @@ $conf['password'] 		= '';
 
 $database 	= new Database($conf);
 
-
-
-
-
-
-
-
 function d($debug, $highlight = true, $hidden = false){
 	// Highlight debug string
 	if($highlight){

@@ -2,10 +2,9 @@
 
 require 'classes/pokemon.class.php';
 
-function getPokemon($database, $id){
+session_start();
 
-	// Get pokemon id
-	$id = $_GET['poke'];
+function getPokemon($database, $id){
 	
 	// Build SQL
 	$sql = "
@@ -29,23 +28,25 @@ function getPokemon($database, $id){
 			AND pokemon.type_id = types.id
 			AND pokemon.id 		= link_attacks.pokemon_id
 			AND attacks.id 		= link_attacks.attack_id
-			AND pokemon.id 		= ".$id."
-	";
+			AND pokemon.id 		= ".$id
+	;
 
 	// Get rows
 	$results = $database->getRows($sql);
 
 	// Output
-	return $results;
+	return $results[0];
 
 }
 
-function makePokemon(){
+function createPokemon($data){
 
+	// Make pokemon
+	$pokemon = new Pokemon($data);
 
+	// Output
+	return $pokemon;
 }
-
-
 
 
  ?>
