@@ -12,7 +12,10 @@
 
 		foreach($pokemons as $player => $data){
 
+			$data['attacks'] = getAttacks($database, $data['id']);
+
 			$_SESSION['pokemons'][$player] = createPokemon($data);
+
 		}
 
 		$_SESSION['turn'] 			= 'player_1'; // Set turn to player 1
@@ -35,7 +38,7 @@
 							<?php echo $pokemon->getHealth().' / '.$pokemon->getHp(); ?>
 						</div>
 					</div>
-					<?php if($_SESSION['turn'] == $k){ ?>
+					<?php if($_SESSION['turn'] == $k && $pokemon->getHealth() > 0){ ?>
 						<div class='row'>
 							<?php foreach($pokemon->getAttacks() as $attack){ ?>
 								<div class='small-5 columns end attacks'>
