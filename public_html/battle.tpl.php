@@ -25,7 +25,7 @@
  ?>
 
 <div class='row'>
-	<div class='small-6 columns small-centered'>
+	<div class='small-6 columns small-centered main-battle'>
 		Turn: <?php echo $_SESSION['turn']; ?>
 		<?php foreach($_SESSION['pokemons'] as $k => $pokemon){ ?>
 			<div class='row'>
@@ -58,6 +58,26 @@
 		<?php foreach(array_reverse($_SESSION['attack_log']) as $msg){ ?>
 			<?php echo $msg."<hr />"; ?>
 		<?php } // End foreach $_SESSION['attack_log'] ?>
+		<?php 
+			foreach($_SESSION['pokemons'] as $k => $pokemon){
+				// End session if someone won
+				if($pokemon->getHealth() <= 0){ ?>
+
+					<div class='battle-ended'>
+						<div><a class='back-to-home' href="?p=home">Home</a></div>
+						<?php foreach($_SESSION['pokemons'] as $key => $poke){ ?>
+							<?php if($k != $key){ ?>
+								<h3><?php echo $poke->getName()." won the battle!"; ?></h3>
+							<?php } // End if ?>
+						<?php } // End foreach ?>
+					</div>
+
+					<?php
+					session_unset();
+					session_destroy(); 
+				} // End if $pokemon->getHealth()
+			} // End foreach $_SESSION['pokemons']
+		 ?>
 	</div>
 </div>
 

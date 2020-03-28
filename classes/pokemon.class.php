@@ -93,7 +93,14 @@ class Pokemon {
 	}
 
 	public function setHealth($damage){
-		return $this->health = $this->health - $damage;
+
+		$this->health = $this->health - $damage;
+
+		if($this->health <= 0){
+			$this->health = 0;
+		}
+
+		return $this->health;
 	}
 
 	public function attack($attack, $enemy){
@@ -122,12 +129,12 @@ class Pokemon {
 				// strength
 				if($enemy->type == 'grass'){
 					$damage = $damage * 1.3;
-					$effective .= '[!!] it was super effective';
+					$effective .= '[!!] it was super effective <br />';
 				}
 				// weakness
 				elseif($enemy->type == 'water'){
 					$damage = $damage * 0.7;
-					$effective .= '[!!] it was not very effective ';
+					$effective .= '[!!] it was not very effective <br />';
 				}
 			break;
 
@@ -136,12 +143,12 @@ class Pokemon {
 				// strength
 				if($enemy->type == 'fire'){
 					$damage = $damage * 1.3;
-					$effective .= '[!!] it was super effective';
+					$effective .= '[!!] it was super effective <br />';
 				}
 				// weakness
 				elseif($enemy->type == 'grass'){
 					$damage = $damage * 0.7;
-					$effective .= '[!!] it was not very effective ';
+					$effective .= '[!!] it was not very effective <br />';
 				}
 			break;
 
@@ -150,12 +157,12 @@ class Pokemon {
 				// strength
 				if($enemy->type == 'water'){
 					$damage = $damage * 1.3;
-					$effective .= '[!!] it was super effective';
+					$effective .= '[!!] it was super effective <br />';
 				}
 				// weakness
 				elseif($enemy->type == 'fire'){
 					$damage = $damage * 0.7;
-					$effective .= '[!!] it was not very effective ';
+					$effective .= '[!!] it was not very effective <br />';
 				}
 			break;
 
@@ -171,23 +178,10 @@ class Pokemon {
 		$enemy->setHealth($damage);
 
 		// attack log, new health
-		$message .= $effective.'<br /><span style=\'color:blue;\'>'.$enemy->getName().'</span> new health: ';
+		$message .= $effective.'<span style=\'color:blue;\'>'.$enemy->getName().'</span> new health: ';
 
-		// battle is won
-		if($enemy->health <= 0){
-			// set to 0 if health is negative
-			$enemy->health = 0;
-
-			// attack log, new health
-			$message .= '<span style=\'color:#17bd54;\'>'.$enemy->getHealth().'</span><br />';
-			$message .= '<h3><span style=\'color:blue;\'>'.$this->name.'</span> won.</h3>';
-
-			// echo '<h3><span style=\'color:blue;\'>'.$this->name.'</span> won.</h3>';
-		}
-		else {
-			// attack log, new health
-			$message .= '<span style=\'color:#17bd54;\'>'.$enemy->getHealth().'</span><br />';
-		}
+		// attack log, new health
+		$message .= '<span style=\'color:#17bd54;\'>'.$enemy->getHealth().'</span><br />';
 
 		// display attack log
 		return $message;

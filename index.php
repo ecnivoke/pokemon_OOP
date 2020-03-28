@@ -4,7 +4,7 @@
 require 'library.php';
 
 // Get page, default: choose
-$page = !isset($_GET['p']) ? 'choose' : $_GET['p'];
+$page = !isset($_GET['p']) ? 'home' : $_GET['p'];
 
 // Require module
 require 'modules/'.$page.'.php';

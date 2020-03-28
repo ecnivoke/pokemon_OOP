@@ -52,6 +52,35 @@ class Database {
 		return $results;
 	}
 
+	public function insert($table, $values){
+
+		// Build SQL
+		$sql = "INSERT INTO ";
+		$sql .= '`'.$table.'`';
+		$sql .= " VALUES(NULL";
+
+		// Set values
+		foreach($values as $value){
+			// Check for int
+			if(is_numeric($value)){
+				$sql .= ",".$value;
+			}
+			else {
+				$sql .= ",'".$value."'";
+			}
+
+		}
+
+		// End of sql
+		$sql .= ");";
+
+		// Prepare SQL query
+		$query = $this->connect()->prepare($sql);
+
+		// Execute SQL query
+		$query->execute();
+	}
+
 }
 
 

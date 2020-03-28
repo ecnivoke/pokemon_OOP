@@ -12,7 +12,6 @@ function getPokemon($database, $id){
 			pokemon.id,
 			pokemon.name,
 			pokemon.hp,
-			pokemon.health,
 			pokemon.damage,
 			types.type,
 			types.weakness,

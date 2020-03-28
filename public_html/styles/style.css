@@ -65,3 +65,13 @@ body {
 	font-weight:  	700;
 	text-align:  	center;
 }
+
+.main-battle {
+	margin-top: 	10%;
+
+}
+
+.battle-ended {
+	position:  		absolute;
+	top: 			5%;
+}
