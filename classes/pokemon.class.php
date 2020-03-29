@@ -14,32 +14,39 @@ class Pokemon {
 	private $hp;
 	private $health;
 	private $type;
+	private $weakness; 		// DOEN
+	private $resistance; 	// DOEN
 	private $color;
 	private $attacks;
 
 	// Methodes
 	public function __construct($pokemon){
 
-		$this->name 	= $pokemon['name'];
-		$this->damage 	= $pokemon['damage'];
-		$this->hp 		= $pokemon['hp'];
-		$this->health 	= $pokemon['hp'];
-		$this->type 	= $pokemon['type'];
-		$this->color 	= $this->setColor();
-		$this->attacks 	= array();
+		// Set pokemon properties if $pokemon is given
+		if(!empty($pokemon)){
+			$this->name 		= $pokemon['name'];
+			$this->damage 		= $pokemon['damage'];
+			$this->hp 			= $pokemon['hp'];
+			$this->health 		= $pokemon['hp'];
+			$this->type 		= $pokemon['type'];
+			$this->weakness 	= $pokemon['weakness'];
+			$this->resistance 	= $pokemon['resistance'];
+			$this->color 		= $this->setColor($pokemon['type']);
+			$this->attacks 		= array();
 
-		// Check if there are any attacks
-		if(!empty($pokemon['attacks'])){
-			// Loop over attacks
-			foreach($pokemon['attacks'] as $attack){
-				// Create new array with attacks
-				$this->attacks[$attack['name']] = ['name'=>$attack['name'], 'damage'=>$attack['damage'], 'type'=>$attack['type']];
-				// d($attack);exit();
+			// Check if there are any attacks
+			if(!empty($pokemon['attacks'])){
+				// Loop over attacks
+				foreach($pokemon['attacks'] as $attack){
+					// Create new array with attacks
+					$this->attacks[$attack['name']] = ['name'=>$attack['name'], 'damage'=>$attack['damage'], 'type'=>$attack['type'], 'color'=>$this->setColor($attack['type'])];
+					// d($attack);exit();
+				}
 			}
-		}
-		else {
-			// Set default attack
-			$this->attacks['tackle'] = ['name'=>'tackle', 'damage'=>10, 'type'=>$this->type];
+			else {
+				// Set default attack
+				$this->attacks['tackle'] = ['name'=>'tackle', 'damage'=>10, 'type'=>'normal', 'color'=>$this->setColor('normal')];
+			}
 		}
 	}
 
@@ -47,7 +54,7 @@ class Pokemon {
 		return json_encode($this);
 	}
 
-	// Getters
+// Getters
 	public function getHealth(){
 		return $this->health;
 	}
@@ -68,30 +75,50 @@ class Pokemon {
 		return $this->attacks;
 	}
 
-	// Setters
-	public function setColor(){
+	public function getWeakness(){
+		return $this->weakness;
+	}
+
+	public function getResistance(){
+		return $this->resistance;
+	}
+// End getters
+// Setters
+	public function setColor($type){
+
 		// loop over types
-		switch($this->type){
+		switch($type){
+
 			// set fire color
 			case 'fire':
-				$this->color = 'red';
+				return '#a3211a';
 			break;
 
 			// set water color
 			case 'water':
-				$this->color = 'aqua';
+				return '#4287f5';
 			break;
 
 			// set grass color
 			case 'grass':
-				$this->color = '#32a852';
+				return '#32a852';
+			break;
+
+			// set electric color
+			case 'electric':
+				return '#d4d266';
+			break;
+
+			// set normal color
+			case 'normal':
+				return '#96957a';
 			break;
 		}
 
 		// output
 		return $this->color;
 	}
-
+// End setters
 	public function setHealth($damage){
 
 		$this->health = $this->health - $damage;
@@ -122,50 +149,61 @@ class Pokemon {
 			$damage = $this->attacks[$attack]['damage'];
 		}
 
-		// calculate damage based on types
-		switch($this->type){
-			// fire strength || weakness
-			case 'fire':
-				// strength
-				if($enemy->type == 'grass'){
-					$damage = $damage * 1.3;
-					$effective .= '[!!] it was super effective <br />';
-				}
-				// weakness
-				elseif($enemy->type == 'water'){
-					$damage = $damage * 0.7;
-					$effective .= '[!!] it was not very effective <br />';
-				}
-			break;
+		// // calculate damage based on types
+		// switch($this->type){
+		// 	// fire strength || weakness
+		// 	case 'fire':
+		// 		// strength
+		// 		if($enemy->type == 'grass'){
+		// 			$damage = $damage * 1.3;
+		// 			$effective .= '[!!] it was super effective <br />';
+		// 		}
+		// 		// weakness
+		// 		elseif($enemy->type == 'water'){
+		// 			$damage = $damage * 0.7;
+		// 			$effective .= '[!!] it was not very effective <br />';
+		// 		}
+		// 	break;
 
-			// water strength || weakness
-			case 'water':
-				// strength
-				if($enemy->type == 'fire'){
-					$damage = $damage * 1.3;
-					$effective .= '[!!] it was super effective <br />';
-				}
-				// weakness
-				elseif($enemy->type == 'grass'){
-					$damage = $damage * 0.7;
-					$effective .= '[!!] it was not very effective <br />';
-				}
-			break;
+		// 	// water strength || weakness
+		// 	case 'water':
+		// 		// strength
+		// 		if($enemy->type == 'fire'){
+		// 			$damage = $damage * 1.3;
+		// 			$effective .= '[!!] it was super effective <br />';
+		// 		}
+		// 		// weakness
+		// 		elseif($enemy->type == 'grass'){
+		// 			$damage = $damage * 0.7;
+		// 			$effective .= '[!!] it was not very effective <br />';
+		// 		}
+		// 	break;
 
-			// grass strength || weakness
-			case 'grass':
-				// strength
-				if($enemy->type == 'water'){
-					$damage = $damage * 1.3;
-					$effective .= '[!!] it was super effective <br />';
-				}
-				// weakness
-				elseif($enemy->type == 'fire'){
-					$damage = $damage * 0.7;
-					$effective .= '[!!] it was not very effective <br />';
-				}
-			break;
+		// 	// grass strength || weakness
+		// 	case 'grass':
+		// 		// strength
+		// 		if($enemy->type == 'water'){
+		// 			$damage = $damage * 1.3;
+		// 			$effective .= '[!!] it was super effective <br />';
+		// 		}
+		// 		// weakness
+		// 		elseif($enemy->type == 'fire'){
+		// 			$damage = $damage * 0.7;
+		// 			$effective .= '[!!] it was not very effective <br />';
+		// 		}
+		// 	break;
 
+		// }
+
+		if($enemy->getWeakness() == $this->attacks[$attack]['type']){
+			// Set damage and effectiveness
+			$damage = $damage * 1.3;
+			$effective .= '[!!] it was super effective <br />';
+		}
+		elseif($enemy->getResistance() == $this->attacks[$attack]['type']){
+			// Set damage and effectiveness
+			$damage = $damage * 0.7;
+			$effective .= '[!!] it was not effective <br />';
 		}
 
 		// remove decimals

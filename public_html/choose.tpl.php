@@ -1,5 +1,9 @@
 <?php 
-	$pokemons = getPokemons($database);
+	// Require class
+	require 'classes/pokemon.class.php';
+
+	$pokemons 	= getPokemons($database);
+	$c 			= new Pokemon('');
  ?>
 
 <?php include 'header.tpl.php'; ?>
@@ -11,9 +15,10 @@
 			<input id='player_2' type="hidden" name="player_2" value="0">
 
 			<?php foreach($pokemons as $pokemon){ ?>
+				<?php $color = $c->setColor($pokemon['type']); ?>
 				<div class='row'>
 					<div class='small-12 columns pokemon-holder'>
-						<h4><?php echo $pokemon['name']; ?></h4>
+						<h4 style="color:<?php echo $color; ?>;"><?php echo $pokemon['name']; ?></h4>
 						<?php echo $pokemon['type']; ?>
 						<div class='player' data-pokemon="<?php echo $pokemon['id'] ?>"></div>
 					</div>

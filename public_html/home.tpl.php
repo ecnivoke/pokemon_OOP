@@ -10,7 +10,7 @@
 				<a href="?p=add">Add Pokemon</a>
 			</div>
 			<div class='small-3 columns'>
-				<a href="#">Add attack</a>
+				<a href="?p=add_atk">Add attack</a>
 			</div>
 			<div class='small-3 columns end'>
 				<!-- hier kan nog iets -->

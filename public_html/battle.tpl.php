@@ -41,7 +41,7 @@
 					<?php if($_SESSION['turn'] == $k && $pokemon->getHealth() > 0){ ?>
 						<div class='row'>
 							<?php foreach($pokemon->getAttacks() as $attack){ ?>
-								<div class='small-5 columns end attacks'>
+								<div class='small-5 columns end attacks' style="background-color:<?php echo $attack['color']; ?>;">
 									<a href="modules/action.php?atk=<?php echo $attack['name']; ?>">
 										<div class='name'>
 											<?php echo $attack['name']; ?>
@@ -67,7 +67,7 @@
 						<div><a class='back-to-home' href="?p=home">Home</a></div>
 						<?php foreach($_SESSION['pokemons'] as $key => $poke){ ?>
 							<?php if($k != $key){ ?>
-								<h3><?php echo $poke->getName()." won the battle!"; ?></h3>
+								<h3><span style="color:<?php echo $poke->getColor(); ?>"><?php echo $poke->getName(); ?></span> won the battle!</h3>
 							<?php } // End if ?>
 						<?php } // End foreach ?>
 					</div>
