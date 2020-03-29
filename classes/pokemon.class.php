@@ -1,11 +1,5 @@
 <?php 
 
-// print rules
-// names: 	<span style=\'color:blue;\'></span>
-// damage: 	<span style=\'color:red;\'></span>
-// health: 	<span style=\'color:#17bd54;\'></span>
-// attacks:	<span style=\'color:#bf62b1;\'></span>
-
 class Pokemon {
 
 	// Properties
@@ -14,8 +8,8 @@ class Pokemon {
 	private $hp;
 	private $health;
 	private $type;
-	private $weakness; 		// DOEN
-	private $resistance; 	// DOEN
+	private $weakness;
+	private $resistance;
 	private $color;
 	private $attacks;
 
@@ -83,6 +77,7 @@ class Pokemon {
 		return $this->resistance;
 	}
 // End getters
+
 // Setters
 	public function setColor($type){
 
@@ -114,11 +109,9 @@ class Pokemon {
 				return '#96957a';
 			break;
 		}
-
-		// output
-		return $this->color;
+		
 	}
-// End setters
+
 	public function setHealth($damage){
 
 		$this->health = $this->health - $damage;
@@ -129,6 +122,7 @@ class Pokemon {
 
 		return $this->health;
 	}
+// End setters
 
 	public function attack($attack, $enemy){
 		// attack log
@@ -149,52 +143,7 @@ class Pokemon {
 			$damage = $this->attacks[$attack]['damage'];
 		}
 
-		// // calculate damage based on types
-		// switch($this->type){
-		// 	// fire strength || weakness
-		// 	case 'fire':
-		// 		// strength
-		// 		if($enemy->type == 'grass'){
-		// 			$damage = $damage * 1.3;
-		// 			$effective .= '[!!] it was super effective <br />';
-		// 		}
-		// 		// weakness
-		// 		elseif($enemy->type == 'water'){
-		// 			$damage = $damage * 0.7;
-		// 			$effective .= '[!!] it was not very effective <br />';
-		// 		}
-		// 	break;
-
-		// 	// water strength || weakness
-		// 	case 'water':
-		// 		// strength
-		// 		if($enemy->type == 'fire'){
-		// 			$damage = $damage * 1.3;
-		// 			$effective .= '[!!] it was super effective <br />';
-		// 		}
-		// 		// weakness
-		// 		elseif($enemy->type == 'grass'){
-		// 			$damage = $damage * 0.7;
-		// 			$effective .= '[!!] it was not very effective <br />';
-		// 		}
-		// 	break;
-
-		// 	// grass strength || weakness
-		// 	case 'grass':
-		// 		// strength
-		// 		if($enemy->type == 'water'){
-		// 			$damage = $damage * 1.3;
-		// 			$effective .= '[!!] it was super effective <br />';
-		// 		}
-		// 		// weakness
-		// 		elseif($enemy->type == 'fire'){
-		// 			$damage = $damage * 0.7;
-		// 			$effective .= '[!!] it was not very effective <br />';
-		// 		}
-		// 	break;
-
-		// }
-
+		// Check for weakness or resistance
 		if($enemy->getWeakness() == $this->attacks[$attack]['type']){
 			// Set damage and effectiveness
 			$damage = $damage * 1.3;

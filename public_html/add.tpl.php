@@ -37,7 +37,6 @@
 
 <form method="POST" action="?p=add">
 
-
 	<div class='row'>
 		<div class='small-10 columns small-centered'>
 
@@ -82,7 +81,6 @@
 
 		</div>
 	</div>
-
 
 </form>
 

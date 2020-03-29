@@ -3,7 +3,7 @@
 	require 'classes/pokemon.class.php';
 
 	$pokemons 	= getPokemons($database);
-	$c 			= new Pokemon('');
+	$c 			= new Pokemon(''); 			// empty pokemon class, to get colors
  ?>
 
 <?php include 'header.tpl.php'; ?>

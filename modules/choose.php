@@ -1,6 +1,7 @@
 <?php 
 
 function getPokemons($database){
+	
 	// Set todays date
 	$today = date('Y-m-d H:i:s');
 
