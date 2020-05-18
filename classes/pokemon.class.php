@@ -2,18 +2,18 @@
 
 class Pokemon {
 
-	// Properties
-	private $name;
-	private $damage;
-	private $hp;
+// Properties
+	private	$name;
+	protected	$damage;
+	protected 	$hp;
 	private $health;
 	private $type;
 	private $weakness;
 	private $resistance;
 	private $color;
 	private $attacks;
+// End properties
 
-	// Methodes
 	public function __construct($pokemon){
 
 		// Set pokemon properties if $pokemon is given
@@ -34,7 +34,6 @@ class Pokemon {
 				foreach($pokemon['attacks'] as $attack){
 					// Create new array with attacks
 					$this->attacks[$attack['name']] = ['name'=>$attack['name'], 'damage'=>$attack['damage'], 'type'=>$attack['type'], 'color'=>$this->setColor($attack['type'])];
-					// d($attack);exit();
 				}
 			}
 			else {
@@ -44,6 +43,10 @@ class Pokemon {
 		}
 	}
 
+	public function setDamage(){
+		return $this->damage;
+	}
+
 	public function __toString(){
 		return json_encode($this);
 	}
@@ -51,6 +54,10 @@ class Pokemon {
 // Getters
 	public function getHealth(){
 		return $this->health;
+	}
+
+	public function getDamage(){
+		return $this->damage;
 	}
 
 	public function getName(){
@@ -124,6 +131,7 @@ class Pokemon {
 	}
 // End setters
 
+// Methodes
 	public function attack($attack, $enemy){
 		// attack log
 		$message 	= '';
@@ -173,6 +181,7 @@ class Pokemon {
 		// display attack log
 		return $message;
 	}
+// End methodes
 
 }
 

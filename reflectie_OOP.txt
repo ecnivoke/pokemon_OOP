@@ -1,0 +1,8 @@
+Reflectie OOP opdracht
+
+Deze opdracht was makkelijker dan ik verwacht had,
+misschien omdat ik al wat kennis had van classes.
+
+Ik heb geen inheritance gebruikt bij deze opdracht,
+ik dacht er wel over na, maar dat was nadat ik de opdracht af had.
+dus ik heb er toch voor gekozen niet nog een keer om te bouwen.

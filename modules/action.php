@@ -2,6 +2,7 @@
 
 // Require classes
 require '../classes/pokemon.class.php';
+require '../classes/kipfilet.class.php';
 
 session_start();
 

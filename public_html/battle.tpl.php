@@ -10,6 +10,8 @@
 			$pokemons[$player] = getPokemon($database, $pokemon);
 		}
 
+		$pokemons['player_2']['name'] = 'kipfilet';
+
 		foreach($pokemons as $player => $data){
 
 			$data['attacks'] = getAttacks($database, $data['id']);

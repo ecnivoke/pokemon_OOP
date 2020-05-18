@@ -1,6 +1,7 @@
 <?php 
 
 require 'classes/pokemon.class.php';
+require 'classes/kipfilet.class.php';
 
 session_start();
 
@@ -62,7 +63,14 @@ function getAttacks($database, $pokemon){
 function createPokemon($data){
 
 	// Make pokemon
-	$pokemon = new Pokemon($data);
+	if($data['name'] == 'kipfilet'){
+		$pokemon = new Kipfilet($data);
+	}
+	else {
+		$pokemon = new Pokemon($data);
+	}
+
+	
 
 	// Output
 	return $pokemon;
